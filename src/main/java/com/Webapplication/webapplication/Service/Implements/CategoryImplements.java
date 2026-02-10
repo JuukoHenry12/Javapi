@@ -1,5 +1,4 @@
 package com.Webapplication.webapplication.Service.Implements;
-
 import com.Webapplication.webapplication.Entity.CategoryEntity;
 import com.Webapplication.webapplication.Respository.CatoryRepository;
 import com.Webapplication.webapplication.Service.CategoryService;
@@ -20,7 +19,6 @@ public class CategoryImplements implements CategoryService {
         CategoryEntity newcategory = convertToEntity(request);
         newcategory =categoryRepository.save(newcategory);
         return convertToResponse(newcategory);
-
     }
 
     private CategoryResponse  convertToResponse(CategoryEntity newcategory){

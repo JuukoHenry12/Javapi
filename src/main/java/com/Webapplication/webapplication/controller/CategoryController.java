@@ -1,20 +1,28 @@
 package com.Webapplication.webapplication.controller;
 
 import com.Webapplication.webapplication.Entity.CategoryEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.Webapplication.webapplication.Service.CategoryService;
+import com.Webapplication.webapplication.io.CategoryRequest;
+import com.Webapplication.webapplication.io.CategoryResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/categories")
 public class CategoryController {
 
-    public CategoryController(JpaRepository jpaRepository) {
+    @Autowired
+    private  final CategoryService categoryService;
 
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
-    public CategoryEntity addCategory(CategoryEntity categoryEntity) {
-        return null;
+    @PostMapping
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public CategoryResponse addCategory(@RequestBody CategoryRequest request) {
+        return categoryService.addCategory(request);
     }
 
 }
